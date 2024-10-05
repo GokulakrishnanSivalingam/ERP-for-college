@@ -441,7 +441,9 @@ ul li a{
     <p>&copy; 2024 YourBrand. All rights reserved.</p>
   </div>
 </footer>
-
+<?php
+echo "avs";
+?>
 
 </body>
 </html>
