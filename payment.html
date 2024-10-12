@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <link rel="stylesheet" href="pay.css">
+    <!-- Link to your CSS file -->
+</head>
+
+<body>
+    <div class="container">
+        <h2>Fee Payment Form</h2>
+        <form action="pay.php" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" name="amount" required>
+            </div>
+
+            <div class="form-group">
+                <label for="payment_method">Select Payment Method</label>
+                <select id="payment_method" name="payment_method" required onchange="togglePaymentFields()">
+                    <option value="">--Select Payment Method--</option>
+                    <option value="credit_card">Credit Card</option>
+                    <option value="upi">UPI</option>
+                    <option value="bank_transfer">Bank Transfer</option>
+                </select>
+            </div>
+
+            <!-- Credit Card Fields -->
+            <div id="credit_card_fields">
+                <div class="form-group">
+                    <label for="card_number">Card Number</label>
+                    <input type="text" id="card_number" name="card_number" placeholder="XXXX-XXXX-XXXX-XXXX">
+                </div>
+
+                <div class="form-group">
+                    <label for="expiry_date">Expiry Date</label>
+                    <input type="month" id="expiry_date" name="expiry_date">
+                </div>
+
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="password" id="cvv" name="cvv" placeholder="XXX">
+                </div>
+            </div>
+
+            <!-- UPI Fields -->
+            <div id="upi_fields">
+                <div class="form-group">
+                    <label for="upi_id">UPI ID</label>
+                    <input type="text" id="upi_id" name="upi_id" placeholder="yourname@bank">
+                </div>
+            </div>
+
+            <!-- Bank Transfer Fields -->
+            <div id="bank_transfer_fields">
+                <div class="form-group">
+                    <label for="bank_account">Bank Account Number</label>
+                    <input type="text" id="bank_account" name="bank_account">
+                </div>
+
+                <div class="form-group">
+                    <label for="ifsc">IFSC Code</label>
+                    <input type="text" id="ifsc" name="ifsc">
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Submit Payment</button>
+        </form>
+    </div>
+
+    <script>
+        function togglePaymentFields() {
+            var paymentMethod = document.getElementById('payment_method').value;
+            document.getElementById('credit_card_fields').style.display = paymentMethod === 'credit_card' ? 'block' : 'none';
+            document.getElementById('upi_fields').style.display = paymentMethod === 'upi' ? 'block' : 'none';
+            document.getElementById('bank_transfer_fields').style.display = paymentMethod === 'bank_transfer' ? 'block' : 'none';
+        }
+    </script>
+</body>
+
+</html>
